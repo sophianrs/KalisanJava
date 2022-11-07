@@ -12,9 +12,8 @@
                         <label for="nama_pemasok" class="col-form-label">Nama Pemasok</label>
                     </div>
                     <div class="col-3">
-                        <input type="text" id="nama_pemasok" name="nama_pemasok" class="form-control"
-                            value="<?= $pemasok['nama_pemasok']; ?>">
-                        <?= form_error('nama_pemasok', '<small class="text-danger pl-3">' ,'</small>'); ?>
+                        <input type="text" id="nama_pemasok" name="nama_pemasok" class="form-control" value="<?= $pemasok['nama_pemasok']; ?>">
+                        <?= form_error('nama_pemasok', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                 </div>
 
@@ -23,9 +22,8 @@
                         <label for="alamat" class="col-form-label">Alamat</label>
                     </div>
                     <div class="col-3">
-                        <input type="text" id="alamat" name="alamat" class="form-control"
-                            value="<?= $pemasok['alamat_pemasok']; ?>">
-                        <?= form_error('alamat', '<small class="text-danger pl-3">' ,'</small>'); ?>
+                        <input type="text" id="alamat_pemasok" name="alamat_pemasok" class="form-control" value="<?= $pemasok['alamat_pemasok']; ?>">
+                        <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                 </div>
 
@@ -34,16 +32,14 @@
                         <label for="telepon" class="col-form-label">Nomor Telepon</label>
                     </div>
                     <div class="col-3">
-                        <input type="text" id="telepon" name="telepon" class="form-control"
-                            value="<?= $pemasok['telepon_pemasok']; ?>">
-                        <?= form_error('telepon', '<small class="text-danger pl-3">' ,'</small>'); ?>
+                        <input type="text" id="telepon_pemasok" name="telepon_pemasok" class="form-control" value="<?= $pemasok['telepon_pemasok']; ?>">
+                        <?= form_error('telepon', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                 </div>
 
                 <div class="row justify-content-center pt-4 pb-4">
                     <div class="col-1">
-                        <a href="<?= base_url('user/lihat_pemasok')?>"><button type="button" class="btn btn-danger"
-                                name="batal" id="batal">Batal</button></a>
+                        <a href="<?= base_url('user/lihat_pemasok') ?>"><button type="button" class="btn btn-danger" name="batal" id="batal">Batal</button></a>
                     </div>
                     <div class="col-1">
                         <button type="submit" class="btn btn-success" name="submit" id="submit">Simpan</button>

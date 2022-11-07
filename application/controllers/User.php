@@ -278,8 +278,8 @@ class User extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->form_validation->set_rules('nama_pemasok', 'Nama Pemasok', 'required');
-        $this->form_validation->set_rules('alamat', 'Alamat', 'required');
-        $this->form_validation->set_rules('telepon', 'Telepon', 'required|numeric');
+        $this->form_validation->set_rules('alamat_pemasok', 'Alamat', 'required');
+        $this->form_validation->set_rules('telepon_pemasok', 'Telepon', 'required|numeric');
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header', $data);
@@ -418,8 +418,8 @@ class User extends CI_Controller
 
 
         $this->form_validation->set_rules('nama_pemasok', 'Nama Pemasok', 'required');
-        $this->form_validation->set_rules('alamat', 'Alamat', 'required');
-        $this->form_validation->set_rules('telepon', 'Telepon', 'required');
+        $this->form_validation->set_rules('alamat_pemasok', 'Alamat', 'required');
+        $this->form_validation->set_rules('telepon_pemasok', 'Telepon', 'required');
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header', $data);
@@ -428,7 +428,7 @@ class User extends CI_Controller
             $this->load->view('user/edit_pemasok', $data);
             $this->load->view('templates/footer');
         } else {
-            $this->Data_kopi->edit_pmasok();
+            $this->Data_kopi->edit_pemasok();
             $this->session->set_flashdata('flash', 'diubah');
             redirect('user/lihat_pemasok');
         }
@@ -465,7 +465,7 @@ class User extends CI_Controller
     // method hapus data kategori
     public function hapus_pemasok($id_pemasok)
     {
-        $this->Data_kopi->hapus_pmasok($id_pemasok);
+        $this->Data_kopi->hapus_pemasok($id_pemasok);
         $this->session->set_flashdata('flash', 'dihapus');
         redirect('user/lihat_pemasok');
     }

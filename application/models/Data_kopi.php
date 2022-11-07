@@ -50,8 +50,8 @@ class Data_kopi extends CI_Model
 
         $data = [
             'nama_pemasok' => $this->input->post('nama_pemasok', true),
-            'alamat_pemasok' => $this->input->post('alamat', true),
-            'telepon_pemasok' => $this->input->post('telepon', true),
+            'alamat_pemasok' => $this->input->post('alamat_pemasok', true),
+            'telepon_pemasok' => $this->input->post('telepon_pemasok', true),
         ];
 
         $this->db->insert('tb_pemasok', $data);
@@ -262,13 +262,13 @@ class Data_kopi extends CI_Model
     }
 
     // method ubah pemasok
-    public function edit_pmasok()
+    public function edit_pemasok()
     {
 
         $data = [
             'nama_pemasok' => $this->input->post('nama_pemasok', true),
-            'alamat_pemasok' => $this->input->post('alamat', true),
-            'telepon_pemasok' => $this->input->post('telepon', true),
+            'alamat_pemasok' => $this->input->post('alamat_pemasok', true),
+            'telepon_pemasok' => $this->input->post('telepon_pemasok', true),
         ];
 
         $this->db->where('id_pemasok', $this->input->post('id_pemasok'));

@@ -5,27 +5,25 @@
         </div>
         <div class="x_content">
 
-            <form action="" method="post" class="form-horizontal form-label-left" novalidate>
+            <form action="<?= base_url("user/form_pemasok") ?>" method="post" class="form-horizontal form-label-left" novalidate>
 
                 <div class="row justify-content-center pt-4" post>
                     <div class="col-2">
                         <label for="nama_pemasok" class="col-form-label">Nama Pemasok</label>
                     </div>
                     <div class="col-3">
-                        <input type="text" id="nama_pemasok" name="nama_pemasok" class="form-control"
-                            value="<?= set_value('nama_pemasok')?>">
-                        <?= form_error('nama_pemasok', '<small class="text-danger pl-3">' ,'</small>'); ?>
+                        <input type="text" id="nama_pemasok" name="nama_pemasok" class="form-control" value="<?= set_value('nama_pemasok') ?>">
+                        <?= form_error('nama_pemasok', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                 </div>
 
                 <div class="row justify-content-center pt-2">
                     <div class="col-2">
-                        <label for="alamat" class="col-form-label">Alamat</label>
+                        <label for="alamat_pemasok" class="col-form-label">Alamat</label>
                     </div>
                     <div class="col-3">
-                        <input type="text" id="alamat" name="alamat" class="form-control"
-                            value="<?= set_value('alamat')?>">
-                        <?= form_error('alamat', '<small class="text-danger pl-3">' ,'</small>'); ?>
+                        <input type="text" id="alamat_pemasok" name="alamat_pemasok" class="form-control" value="<?= set_value('alamat_pemasok') ?>">
+                        <?= form_error('alamat_pemasok', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                 </div>
 
@@ -34,16 +32,14 @@
                         <label for="telepon" class="col-form-label">Nomor Telepon</label>
                     </div>
                     <div class="col-3">
-                        <input type="text" id="telepon" name="telepon" class="form-control"
-                            value="<?= set_value('telepon')?>">
-                        <?= form_error('telepon', '<small class="text-danger pl-3">' ,'</small>'); ?>
+                        <input type="text" id="telepon_pemasok" name="telepon_pemasok" class="form-control" value="<?= set_value('telepon_pemasok') ?>">
+                        <?= form_error('telepon', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                 </div>
 
                 <div class="row justify-content-center pt-4 pb-4">
                     <div class="col-1">
-                        <a href="<?= base_url('user/lihat_pemasok')?>"><button type="button" class="btn btn-danger"
-                                name="batal" id="batal">Batal</button></a>
+                        <a href="<?= base_url('user/lihat_pemasok') ?>"><button type="button" class="btn btn-danger" name="batal" id="batal">Batal</button></a>
                     </div>
                     <div class="col-1">
                         <button type="submit" class="btn btn-success" name="submit" id="submit">Simpan</button>
@@ -64,11 +60,12 @@
 <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
 
 <script>
-$(document).ready(function() {
-    $('#dataTable').DataTable({
-        dom: 'Bfrtip',
-        buttons: [
-            'excel', 'pdf',
-        ]
+    $(document).ready(function() {
+        $('#dataTable').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'excel', 'pdf',
+            ]
+        });
     });
-});
+</script>
