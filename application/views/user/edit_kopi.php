@@ -6,14 +6,14 @@
         <div class="x_content">
 
             <form action="" method="post" class="form-horizontal form-label-left" novalidate>
-                <input type="hidden" name="id" id="id" value="<?= $obat['id']; ?>">
+                <input type="hidden" name="id" id="id" value="<?= $kopi['id']; ?>">
                 <div class="row justify-content-center pt-4" post>
                     <div class="col-2">
-                        <label for="nama_obat" class="col-form-label">Nama Kopi</label>
+                        <label for="nama_kopi" class="col-form-label">Nama Kopi</label>
                     </div>
                     <div class="col-3">
-                        <input type="text" id="nama_obat" name="nama_obat" class="form-control" value="<?= $obat['nama_obat']; ?>">
-                        <?= form_error('nama_obat', '<small class="text-danger pl-3">', '</small>'); ?>
+                        <input type="text" id="nama_kopi" name="nama_kopi" class="form-control" value="<?= $kopi['nama_kopi']; ?>">
+                        <?= form_error('nama_kopi', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                 </div>
 
@@ -22,7 +22,7 @@
                         <label for="penyimpanan" class="col-form-label">Penyimpanan</label>
                     </div>
                     <div class="col-3">
-                        <input type="text" id="penyimpanan" name="penyimpanan" class="form-control" value="<?= $obat['penyimpanan']; ?>">
+                        <input type="text" id="penyimpanan" name="penyimpanan" class="form-control" value="<?= $kopi['penyimpanan']; ?>">
                         <?= form_error('penyimpanan', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                         <label for="stok" class="col-form-label">Banyak Stok</label>
                     </div>
                     <div class="col-3">
-                        <input type="text" id="stok" name="stok" class="form-control" value="<?= $obat['stok']; ?>">
+                        <input type="text" id="stok" name="stok" class="form-control" value="<?= $kopi['stok']; ?>">
                         <?= form_error('stok', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                     <div class="col-3">
                         <select type="text" name="nama_kat" id="nama_kat" class="form-control">
                             <?php foreach ($get_kat as $gk) : ?>
-                                <?php if ($gk == $obat['nama_kat']) : ?>
+                                <?php if ($gk == $kopi['nama_kat']) : ?>
                                     <option value=" <?php echo $gk; ?>" selected><?php echo $gk; ?></option>
                                 <?php else :  ?>
                                     <option value="<?php echo $gk; ?>"><?php echo $gk; ?></option>
@@ -60,7 +60,7 @@
                         <label for="kedaluwarsa" class="col-form-label">Tanggal Kadaluarsa</label>
                     </div>
                     <div class="col-3">
-                        <input type="date" id="kedaluwarsa" name="kedaluwarsa" class="form-control" value="<?= $obat['kedaluwarsa']; ?>">
+                        <input type="date" id="kedaluwarsa" name="kedaluwarsa" class="form-control" value="<?= $kopi['kedaluwarsa']; ?>">
                         <?= form_error('kedaluwarsa', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                         <label for="h_beli" class="col-form-label">Harga Beli</label>
                     </div>
                     <div class="col-3">
-                        <input type="text" id="h_beli" name="h_beli" class="form-control" value="<?= $obat['h_beli']; ?>">
+                        <input type="text" id="h_beli" name="h_beli" class="form-control" value="<?= $kopi['h_beli']; ?>">
                         <?= form_error('h_beli', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
                         <label for="h_jual" class="col-form-label">Harga Jual</label>
                     </div>
                     <div class="col-3">
-                        <input type="text" id="h_jual" name="h_jual" class="form-control" value="<?= $obat['h_jual']; ?>" readonly>
+                        <input type="text" id="h_jual" name="h_jual" class="form-control" value="<?= $kopi['h_jual']; ?>" readonly>
                         <?= form_error('h_jual', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                 </div>
@@ -92,7 +92,7 @@
                     <div class="col-3">
                         <select type="text" name="nama_pemasok" id="nama_pemasok" class="form-control">
                             <?php foreach ($get_pemasok as $gp) : ?>
-                                <?php if ($gp == $obat['nama_pemasok']) : ?>
+                                <?php if ($gp == $kopi['nama_pemasok']) : ?>
                                     <option value="<?php echo $gp; ?>" selected><?php echo $gp; ?></option>
                                 <?php else :  ?>
                                     <option value="<?php echo $gp; ?>"><?php echo $gp; ?></option>
@@ -105,7 +105,7 @@
 
                 <div class="row justify-content-center pt-4 pb-4">
                     <div class="col-1">
-                        <a href="<?= base_url('user/lihat_obat') ?>"><button type="button" class="btn btn-danger" name="batal" id="batal">Batal</button></a>
+                        <a href="<?= base_url('user/lihat_kopi') ?>"><button type="button" class="btn btn-danger" name="batal" id="batal">Batal</button></a>
                     </div>
                     <div class="col-1">
                         <button type="submit" class="btn btn-success" name="submit" id="submit">Simpan</button>

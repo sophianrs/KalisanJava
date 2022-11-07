@@ -33,25 +33,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- <?php
-                                $i = 1;
-                                foreach ($kategori as $data) :
-                                ?>
-                        <tr>
-                            <td><?= $i++; ?></td>
-                            <td><?= $data->nama_kat; ?></td>
-                            <td><?= $data->desk_kat; ?></td>
-                            <td>
-                                <a href="<?= base_url('user/edit_kategori/') . $data->id_kat ?>"><button type="edit"
-                                        class="sbtn btn-success"><i class="fas fa-edit"></i></button></a>
+                        <?php
+                        $i = 1;
+                        foreach ($kategori as $data) :
+                        ?>
+                            <tr>
+                                <td><?= $i++; ?></td>
+                                <td><?= $data->nama_kat; ?></td>
+                                <td><?= $data->desk_kat; ?></td>
+                                <td>
+                                    <a href="<?= base_url('user/edit_kategori/') . $data->id_kat ?>"><button type="edit" class="sbtn btn-success"><i class="fas fa-edit"></i></button></a>
 
-                                <a href="<?= base_url('user/hapus_kategori/') . $data->id_kat ?>"><button type="delete"
-                                        class="sbtn btn-danger" onclick="return confirm('Yakin?')"><i
-                                            class="fas fa-trash"></i></button></a>
-                            </td>
-                        </tr>
+                                    <a href="<?= base_url('user/hapus_kategori/') . $data->id_kat ?>"><button type="delete" class="sbtn btn-danger" onclick="return confirm('Yakin?')"><i class="fas fa-trash"></i></button></a>
+                                </td>
+                            </tr>
 
-                        <?php endforeach; ?> -->
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

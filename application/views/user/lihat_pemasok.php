@@ -32,7 +32,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- <?php
+                        <?php
                                 $i = 1;
                                 foreach ($pemasok as $data) :
                                 ?>
@@ -49,7 +49,7 @@
             </td>
             </tr>
 
-        <?php endforeach; ?> -->
+        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

@@ -45,10 +45,10 @@
                     <div class="col-3">
 
                         <select name="nama_kat" id="nama_kat" class="select2_single form-control" tabindex="-1" required="required">
-                            <!-- <option selected="true" value="" disabled></option>
+                            <option selected="true" value="" disabled></option>
                             <?php foreach ($get_kat as $gk) { ?>
                                 <option value="<?php echo $gk; ?>"><?php echo $gk; ?></option>
-                            <?php  } ?> -->
+                            <?php  } ?>
                         </select>
                         <?= form_error('nama_kat', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
@@ -95,10 +95,10 @@
                     </div>
                     <div class="col-3">
                         <select name="nama_pemasok" id="nama_pemasok" class="select2_single form-control" tabindex="-1" required="required">
-                            <!-- <option selected="true" value="" disabled></option>
+                            <option selected="true" value="" disabled></option>
                             <?php foreach ($get_pemasok as $gs) { ?>
                                 <option value="<?php echo $gs; ?>"><?php echo $gs; ?></option>
-                            <?php  } ?> -->
+                            <?php  } ?>
                         </select>
                         <?= form_error('nama_pemasok', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>

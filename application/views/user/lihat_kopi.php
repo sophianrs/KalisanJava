@@ -34,13 +34,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- <?php
+                        <?php
                                 $i = 1;
-                                foreach ($obat as $data) :
+                                foreach ($kopi as $data) :
                                 ?>
                             <tr>
                                 <td><?= $i++; ?></td>
-                                <td><?= $data->nama_obat; ?></td>
+                                <td><?= $data->nama_kopi; ?></td>
                                 <td><?= $data->penyimpanan; ?></td>
                                 <td><?= $data->nama_kat; ?></td>
                                 <td><?= $data->stok; ?></td>
@@ -54,7 +54,7 @@
                                 </td>
                             </tr>
 
-                        <?php endforeach; ?> -->
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

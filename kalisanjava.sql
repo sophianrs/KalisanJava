@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 17 Bulan Mei 2022 pada 15.35
--- Versi server: 10.4.24-MariaDB
--- Versi PHP: 8.0.3
+-- Generation Time: Nov 01, 2022 at 02:38 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `apotekkita`
+-- Database: `kalisanjava`
 --
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `month`
+-- Table structure for table `month`
 --
 
 CREATE TABLE `month` (
@@ -33,7 +33,7 @@ CREATE TABLE `month` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `month`
+-- Dumping data for table `month`
 --
 
 INSERT INTO `month` (`month_num`, `month_name`) VALUES
@@ -53,7 +53,7 @@ INSERT INTO `month` (`month_num`, `month_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_kategori`
+-- Table structure for table `tb_kategori`
 --
 
 CREATE TABLE `tb_kategori` (
@@ -62,26 +62,15 @@ CREATE TABLE `tb_kategori` (
   `desk_kat` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data untuk tabel `tb_kategori`
---
-
-INSERT INTO `tb_kategori` (`id_kat`, `nama_kat`, `desk_kat`) VALUES
-(45, 'Antibiotik', 'Obat pencegah infeksi'),
-(46, 'Demam', 'Obat untuk demam/nyeri'),
-(47, 'Darah Tinggi', 'Obat menurunkan tekanan darah'),
-(48, 'Obat Batuk', 'Obat batuk berdahak dan kering'),
-(49, 'Maag', 'Obat meredakan sakit maag');
-
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_obat`
+-- Table structure for table `tb_kopi`
 --
 
-CREATE TABLE `tb_obat` (
+CREATE TABLE `tb_kopi` (
   `id` int(11) NOT NULL,
-  `nama_obat` varchar(128) NOT NULL,
+  `nama_kopi` varchar(128) NOT NULL,
   `penyimpanan` varchar(128) NOT NULL,
   `stok` int(11) NOT NULL,
   `kedaluwarsa` date NOT NULL,
@@ -91,28 +80,10 @@ CREATE TABLE `tb_obat` (
   `nama_kat` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data untuk tabel `tb_obat`
---
-
-INSERT INTO `tb_obat` (`id`, `nama_obat`, `penyimpanan`, `stok`, `kedaluwarsa`, `h_jual`, `h_beli`, `nama_pemasok`, `nama_kat`) VALUES
-(63, 'Amoxicilin', 'Etalase 1', 50, '2022-06-16', 13320, 10000, 'Antarmitra Sembada', 'Antibiotik'),
-(64, 'Cefadroxil', 'Etalase  1', 20, '2022-05-30', 17316, 13000, 'Antarmitra Sembada', ' Antibiotik'),
-(65, 'Paracetamol', 'Etalase 2', 20, '2022-05-23', 3500, 3000, 'Bina San Prima', ' Demam'),
-(66, 'Ambroxol', 'Etalase 2', 31, '2022-06-12', 3000, 2500, 'Belibis', ' Obat Batuk'),
-(67, 'OBH', 'Etalase 2', 14, '2023-05-16', 13000, 10000, 'Belibis', 'Obat Batuk'),
-(68, 'Ibuprofin', 'Etalase 3', 20, '2022-06-11', 4000, 3500, 'Bina San Prima', 'Demam'),
-(69, 'OBP', 'Etalase 2', 25, '2022-05-28', 14000, 11000, 'Belibis', 'Obat Batuk'),
-(70, 'Candesartan (8mg)', 'Etalase 4', 10, '2022-05-31', 25000, 22000, 'Mensa Binasukses', 'Darah Tinggi'),
-(71, 'Amlodipin', 'Etalase 4', 15, '2022-05-28', 23000, 20000, 'Mensa Binasukses', 'Darah Tinggi'),
-(72, 'Bisoprolol', 'Etalase 4', 15, '2022-05-22', 18000, 15000, 'Mensa Binasukses', ' Darah Tinggi'),
-(73, 'Ciprofroksasin', 'Etalase 1', 25, '2022-05-24', 18000, 15000, 'Antarmitra Sembada', 'Antibiotik'),
-(74, 'OBH', 'Etalase 1', 10, '2022-05-17', 13320, 10000, 'Antarmitra Sembada', 'Obat Batuk');
-
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_pemasok`
+-- Table structure for table `tb_pemasok`
 --
 
 CREATE TABLE `tb_pemasok` (
@@ -122,21 +93,10 @@ CREATE TABLE `tb_pemasok` (
   `telepon_pemasok` int(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data untuk tabel `tb_pemasok`
---
-
-INSERT INTO `tb_pemasok` (`id_pemasok`, `nama_pemasok`, `alamat_pemasok`, `telepon_pemasok`) VALUES
-(27, 'Mensa Binasukses', 'Kedamaian, Tanjungkarang Timur, Bandar Lampung', 721253690),
-(28, 'Belibis', 'JALAN UDANG I NO 29, Garuntang, Kec. Bumi Waras, Kota Bandar Lampung, Lampung 35227', 721472153),
-(29, 'Bina San Prima', 'JL P. Tembesu No.16 A, Campang Raya, Kec. Tanjungkarang Timur, Kota Bandar Lampung, Lampung 35122', 721788664),
-(30, 'Sapta Sari Tama', 'Jl. Arif Rahman Hakim Blok B No.20, Way Halim Permai, Kec. Sukarame, Kota Bandar Lampung, Lampung 35133', 721706896),
-(31, 'Antarmitra Sembada', 'Jl. Cut Nyak Dien No.76, Palapa, Kec. Tj. Karang Pusat, Kota Bandar Lampung, Lampung 35119', 721263087);
-
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_pembelian`
+-- Table structure for table `tb_pembelian`
 --
 
 CREATE TABLE `tb_pembelian` (
@@ -151,24 +111,16 @@ CREATE TABLE `tb_pembelian` (
   `grandtotal` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data untuk tabel `tb_pembelian`
---
-
-INSERT INTO `tb_pembelian` (`id_beli`, `ref`, `nama_obat`, `h_beli`, `banyak`, `subtotal`, `nama_pemasok`, `tgl_beli`, `grandtotal`) VALUES
-(6, 'PjPAEcXjdd', 'OBH', 10000, 1, 10000, 'Belibis', '2022-05-16', 22500),
-(7, 'PjPAEcXjdd', 'Ambroxol', 2500, 5, 12500, 'Belibis', '2022-05-16', 22500);
-
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_penjualan`
+-- Table structure for table `tb_penjualan`
 --
 
 CREATE TABLE `tb_penjualan` (
   `id_jual` int(11) NOT NULL,
   `ref` varchar(128) NOT NULL,
-  `nama_obat` varchar(128) NOT NULL,
+  `nama_kopi` varchar(128) NOT NULL,
   `h_beli` int(11) NOT NULL,
   `banyak` int(11) NOT NULL,
   `subtotal` int(11) NOT NULL,
@@ -177,21 +129,10 @@ CREATE TABLE `tb_penjualan` (
   `grandtotal` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data untuk tabel `tb_penjualan`
---
-
-INSERT INTO `tb_penjualan` (`id_jual`, `ref`, `nama_obat`, `h_beli`, `banyak`, `subtotal`, `nama_pembeli`, `tgl_beli`, `grandtotal`) VALUES
-(15, 'VKCgXFVryj', 'OBH', 10000, 1, 10000, 'Candra', '2022-05-16', 16000),
-(16, 'VKCgXFVryj', 'Paracetamol', 3000, 2, 6000, 'Candra', '2022-05-16', 16000),
-(17, '6nWppmAcFk', 'Ambroxol', 2500, 4, 10000, 'Candra Lagi Beli', '2022-05-17', 29000),
-(18, '6nWppmAcFk', 'OBH', 10000, 1, 10000, 'Candra Lagi Beli', '2022-05-17', 29000),
-(19, '6nWppmAcFk', 'Paracetamol', 3000, 3, 9000, 'Candra Lagi Beli', '2022-05-17', 29000);
-
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -206,17 +147,16 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `name`, `email`, `image`, `password`, `role_id`, `is_active`, `date_created`) VALUES
-(3, 'Candra Wahyu F', 'candra@gmail.com', 'default.png', '$2y$10$3uGOaFUpOQO4UWpt9f24.OO2UUP1Ab/FZIVvnP5A9ltG/FBaERwqG', 1, 1, 1649111986),
 (4, 'admin', 'admin@gmail.com', 'default.png', '$2y$10$Roy4l/1.yx7GgGZcCL76lefSC2VtJ5T3tu2SaRRc7F56FPTrxg5FG', 1, 1, 1649148911);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user_role`
+-- Table structure for table `user_role`
 --
 
 CREATE TABLE `user_role` (
@@ -225,7 +165,7 @@ CREATE TABLE `user_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `user_role`
+-- Dumping data for table `user_role`
 --
 
 INSERT INTO `user_role` (`id`, `role`) VALUES
@@ -237,37 +177,37 @@ INSERT INTO `user_role` (`id`, `role`) VALUES
 --
 
 --
--- Indeks untuk tabel `month`
+-- Indexes for table `month`
 --
 ALTER TABLE `month`
   ADD PRIMARY KEY (`month_num`);
 
 --
--- Indeks untuk tabel `tb_kategori`
+-- Indexes for table `tb_kategori`
 --
 ALTER TABLE `tb_kategori`
   ADD PRIMARY KEY (`id_kat`),
   ADD UNIQUE KEY `nama_kat` (`nama_kat`);
 
 --
--- Indeks untuk tabel `tb_obat`
+-- Indexes for table `tb_kopi`
 --
-ALTER TABLE `tb_obat`
+ALTER TABLE `tb_kopi`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_kat` (`nama_kat`),
   ADD KEY `nama_kat` (`nama_kat`),
   ADD KEY `nama_pemasok` (`nama_pemasok`),
-  ADD KEY `nama_obat` (`nama_obat`);
+  ADD KEY `nama_obat` (`nama_kopi`);
 
 --
--- Indeks untuk tabel `tb_pemasok`
+-- Indexes for table `tb_pemasok`
 --
 ALTER TABLE `tb_pemasok`
   ADD PRIMARY KEY (`id_pemasok`),
   ADD KEY `nama_pemasok` (`nama_pemasok`);
 
 --
--- Indeks untuk tabel `tb_pembelian`
+-- Indexes for table `tb_pembelian`
 --
 ALTER TABLE `tb_pembelian`
   ADD PRIMARY KEY (`id_beli`),
@@ -275,66 +215,66 @@ ALTER TABLE `tb_pembelian`
   ADD KEY `nama_obat` (`nama_obat`);
 
 --
--- Indeks untuk tabel `tb_penjualan`
+-- Indexes for table `tb_penjualan`
 --
 ALTER TABLE `tb_penjualan`
   ADD PRIMARY KEY (`id_jual`),
-  ADD KEY `nama_obat` (`nama_obat`);
+  ADD KEY `nama_obat` (`nama_kopi`);
 
 --
--- Indeks untuk tabel `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `user_role`
+-- Indexes for table `user_role`
 --
 ALTER TABLE `user_role`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `tb_kategori`
+-- AUTO_INCREMENT for table `tb_kategori`
 --
 ALTER TABLE `tb_kategori`
   MODIFY `id_kat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_obat`
+-- AUTO_INCREMENT for table `tb_kopi`
 --
-ALTER TABLE `tb_obat`
+ALTER TABLE `tb_kopi`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_pemasok`
+-- AUTO_INCREMENT for table `tb_pemasok`
 --
 ALTER TABLE `tb_pemasok`
   MODIFY `id_pemasok` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_pembelian`
+-- AUTO_INCREMENT for table `tb_pembelian`
 --
 ALTER TABLE `tb_pembelian`
   MODIFY `id_beli` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_penjualan`
+-- AUTO_INCREMENT for table `tb_penjualan`
 --
 ALTER TABLE `tb_penjualan`
   MODIFY `id_jual` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT untuk tabel `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `user_role`
+-- AUTO_INCREMENT for table `user_role`
 --
 ALTER TABLE `user_role`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
