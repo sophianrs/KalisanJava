@@ -99,8 +99,8 @@
 
     addpenjualan.onclick = function(event) {
         penjualan.row.add([
-            '<select required="required" style="width:100%" class="form-control nama_obat" id="nama_obat' +
-            counter + '" name="nama_obat[]" data-stok="#stok' + counter + '" data-nama_kat="#nama_kat' +
+            '<select required="required" style="width:100%" class="form-control nama_kopi" id="nama_kopi' +
+            counter + '" name="nama_kopi[]" data-stok="#stok' + counter + '" data-nama_kat="#nama_kat' +
             counter + '" data-h_beli="#h_beli' + counter +
             '"><option selected="true" value="" disabled ></option><?php foreach ($get_med as $gm) { ?><option value="<?php echo $gm; ?>"><?php echo $gm; ?></option><?php  } ?></select>',
             '<input id="stok' + counter + '" name="stok[]" class="form-control stok" readonly >',
@@ -138,20 +138,20 @@
     });
 
 
-    $('#penjualan').on('change', '.nama_obat', function() {
+    $('#penjualan').on('change', '.nama_kopi', function() {
         var $select = $(this);
-        var nama_obat = $select.val();
+        var nama_kopi = $select.val();
 
         $.ajax({
             type: "POST",
             url: "<?php echo base_url('user/product') ?>",
             dataType: "JSON",
             data: {
-                nama_obat: nama_obat
+                nama_kopi: nama_kopi
             },
             cache: false,
             success: function(data) {
-                $.each(data, function(nama_obat, stok, nama_kat, h_beli) {
+                $.each(data, function(nama_kopi, stok, nama_kat, h_beli) {
                     $($select.data('stok')).val(data.stok);
                     $($select.data('nama_kat')).val(data.nama_kat);
                     $($select.data('h_beli')).val(data.h_beli);

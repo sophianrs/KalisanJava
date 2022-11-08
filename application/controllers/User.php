@@ -31,7 +31,7 @@ class User extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
 
-        $data['sumKopi'] = $this->Data_kopi->total_obat();
+        $data['sumKopi'] = $this->Data_kopi->total_kopi();
         $data['sumKat'] = $this->Data_kopi->total_kategori();
         $data['sumPemasok'] = $this->Data_kopi->total_pemasok();
         $data['sumJual'] = $this->Data_kopi->count_totaljual();
@@ -60,7 +60,7 @@ class User extends CI_Controller
         $this->session->userdata('email')])->row_array();
 
         // queri pemanggilan tabel di DB
-        $data['obat'] = $this->Data_kopi->getDataKopi('tb_kopi');
+        $data['kopi'] = $this->Data_kopi->getDataKopi('tb_kopi');
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -84,7 +84,7 @@ class User extends CI_Controller
         $this->session->userdata('email')])->row_array();
 
         // queri pemanggilan tabel di DB
-        $data['obat'] = $this->Data_kopi->getDataKopi('tb_kopi');
+        $data['kopi'] = $this->Data_kopi->getDataKopi('tb_kopi');
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -355,11 +355,11 @@ class User extends CI_Controller
 
         $data['title'] = 'Ubah Data Kopi';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['obat'] = $this->Data_kopi->getKopi($id);
+        $data['kopi'] = $this->Data_kopi->getKopi($id);
 
         $data['get_kat'] = $this->Data_kopi->get_kategori();
         $data['get_pemasok'] = $this->Data_kopi->get_pemasok();
-        // $data['obat_edit'] = $this->Data_kopi->edit_data_obat('tb_kopi');
+        // $data['kopi_edit'] = $this->Data_kopi->edit_data_kopi('tb_kopi');
 
         $this->form_validation->set_rules('nama_kopi', 'Nama Pemasok', 'required');
         $this->form_validation->set_rules('penyimpanan', 'Penyimpanan', 'required');
@@ -379,7 +379,7 @@ class User extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             // var_dump($this->input->post("h_jual"));die;
-            $this->Data_kopi->edit_obatan();
+            $this->Data_kopi->edit_kopi();
             $this->session->set_flashdata('flash', 'diubah');
             redirect('user/lihat_kopi');
         }
@@ -449,7 +449,7 @@ class User extends CI_Controller
     // method hapus data kopi
     public function hapus_kopi($id)
     {
-        $this->Data_kopi->hapus_obat($id);
+        $this->Data_kopi->hapus_kopi($id);
         $this->session->set_flashdata('flash', 'dihapus');
         redirect('user/lihat_kopi');
     }

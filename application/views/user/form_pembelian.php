@@ -116,11 +116,11 @@
             success: function(data) {
                 var html = '';
                 var i;
-                html += '<option selected="true" value="" disabled >Pilih obat</option>';
+                html += '<option selected="true" value="" disabled >Pilih Kopi</option>';
                 for (i = 0; i < data.length; i++) {
-                    html += '<option>' + data[i].nama_obat + '</option>';
+                    html += '<option>' + data[i].nama_kopi + '</option>';
                 }
-                $('.nama_obat').html(html);
+                $('.nama_kopi').html(html);
 
             }
         });
@@ -130,10 +130,10 @@
 
     addpembelian.onclick = function(event) {
         pembelian.row.add([
-            '<select required="required" style="width:100%;" class="form-control nama_obat" id="nama_obat' +
-            count + '" name="nama_obat[]" data-stok="#stok' + count + '" data-nama_kat="#nama_kat' + count +
+            '<select required="required" style="width:100%;" class="form-control nama_kopi" id="nama_kopi' +
+            count + '" name="nama_kopi[]" data-stok="#stok' + count + '" data-nama_kat="#nama_kat' + count +
             '" data-h_beli="#h_beli' + count +
-            '"><option selected="true" value="" disabled >Pilih obat</option></select>',
+            '"><option selected="true" value="" disabled >Pilih Kopi</option></select>',
             '<input id="stok' + count + '" name="stok[]" class="form-control stok" readonly >',
             '<input id="nama_kat' + count + '" name="nama_kat[]" class="form-control nama_kat" readonly>',
             '<input id="h_beli' + count +
@@ -169,20 +169,20 @@
     });
 
 
-    $('#pembelian').on('change', '.nama_obat', function() {
+    $('#pembelian').on('change', '.nama_kopi', function() {
         var $select = $(this);
-        var nama_obat = $select.val();
+        var nama_kopi = $select.val();
 
         $.ajax({
             type: "POST",
             url: "<?php echo base_url('user/product') ?>",
             dataType: "JSON",
             data: {
-                nama_obat: nama_obat
+                nama_kopi: nama_kopi
             },
             cache: false,
             success: function(data) {
-                $.each(data, function(nama_obat, stok, nama_kat, h_beli) {
+                $.each(data, function(nama_kopi, stok, nama_kat, h_beli) {
                     $($select.data('stok')).val(data.stok);
                     $($select.data('nama_kat')).val(data.nama_kat);
                     $($select.data('h_beli')).val(data.h_beli);

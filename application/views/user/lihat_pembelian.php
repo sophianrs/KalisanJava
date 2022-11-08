@@ -25,12 +25,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- <?php
+                        <?php
                                 foreach ($tb_beli as $data) :
                                 ?>
                             <tr>
                                 <td><?= $data->ref; ?></td>
-                                <td><?= $data->nama_obat; ?></td>
+                                <td><?= $data->nama_kopi; ?></td>
                                 <td><?= $data->nama_pemasok; ?></td>
                                 <td><?= date('j F Y', strtotime($data->tgl_beli)); ?></td>
                                 <td>Rp <?= number_format($data->h_beli); ?></td>
@@ -40,11 +40,11 @@
                                     <a href="<?= base_url('user/lihat_nota_pembelian/') . $data->ref ?>"><button type="button" class="sbtn btn-success"><i class="fas fa-file-invoice"></i></button></a>
 
                                     <a href="<?= base_url('user/hapus_pembelian/') . $data->id_beli ?>"><button type="delete"
-                                        class="sbtn btn-danger"><i class="fas fa-trash"></i></button></a> -->
-                        <!-- </td>
+                                        class="sbtn btn-danger"><i class="fas fa-trash"></i></button></a>
+                        </td>
                         </tr>
 
-                    <?php endforeach; ?> -->
+                    <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

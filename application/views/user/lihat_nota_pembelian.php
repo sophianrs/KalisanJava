@@ -6,51 +6,50 @@
 
         <section class="card shadow mb-4">
             <!-- title row -->
-            <?php foreach($table_invoice as $i){ ?>
-            <div class="row">
-                <div class="row m-4">
-                    <h1>
-                        <i class="fa fa-globe"></i> Nota Pembelian.
-                        <small class="pull-right"></small>
-                    </h1>
+            <?php foreach ($table_invoice as $i) { ?>
+                <div class="row">
+                    <div class="row m-4">
+                        <h1>
+                            <i class="fa fa-globe"></i> Nota Pembelian.
+                            <small class="pull-right"></small>
+                        </h1>
+                    </div>
+                    <!-- /.col -->
                 </div>
-                <!-- /.col -->
-            </div>
-            <!-- info row -->
-            <div class="row p-4">
-                <div class="col-sm-4">
-                    Dari
-                    <address>
-                        <strong>Apotek Kiki Farma</strong>
-                        <br>Jl. Panglima Polim no. 34, Segala Mider
-                        <br>Bandar Lampung
-                        <br>Telp: 0888 1111 2222 3333
+                <!-- info row -->
+                <div class="row p-4">
+                    <div class="col-sm-4">
+                        Dari
+                        <address>
+                            <strong>Kalisan Java</strong>
+                            <br>Jl. Hayam Wuruk 72B Perum Kedamaian Indah Bandar Lampung
+                            <br>Bandar Lampung
+                            <br>Telp: 0888 44444 5555 9999
+                        </address>
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-sm-4">
+                        Pemasok
+                        <address>
+                            <strong><?php echo $i->nama_pemasok ?></strong>
 
-                    </address>
+                            <br>Bandar Lampung
+
+                        </address>
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-sm-4">
+                        <b>No Referensi : #<?php echo $i->ref ?></b>
+                        <br>
+                        <b>Total Pembelian : <?php echo $i->banyak ?></b>
+                        <br>
+                        <b>Tanggal : <?php echo date('j F Y', strtotime($i->tgl_beli)) ?></b>
+                        <br>
+
+                    </div>
+                    <!-- /.col -->
                 </div>
-                <!-- /.col -->
-                <div class="col-sm-4">
-                    Pemasok
-                    <address>
-                        <strong><?php echo $i->nama_pemasok ?></strong>
-
-                        <br>Bandar Lampung
-
-                    </address>
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-4">
-                    <b>No Referensi : #<?php echo $i->ref ?></b>
-                    <br>
-                    <b>Total Pembelian : <?php echo $i->banyak ?></b>
-                    <br>
-                    <b>Tanggal : <?php echo date('j F Y',strtotime($i->tgl_beli)) ?></b>
-                    <br>
-
-                </div>
-                <!-- /.col -->
-            </div>
-            <!-- /.row -->
+                <!-- /.row -->
             <?php } ?>
 
             <!-- Table row -->
@@ -67,26 +66,26 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach($show_invoice as $si){ ?>
-                            <tr>
-                                <td><?php echo $si->nama_obat ?></td>
-                                <td>Rp <?php echo number_format($si->h_beli) ?></td>
-                                <td><?php echo $si->banyak ?></td>
-                                <td>Rp <?php echo number_format($si->subtotal) ?></td>
-                            </tr>
+                            <?php foreach ($show_invoice as $si) { ?>
+                                <tr>
+                                    <td><?php echo $si->nama_kopi ?></td>
+                                    <td>Rp <?php echo number_format($si->h_beli) ?></td>
+                                    <td><?php echo $si->banyak ?></td>
+                                    <td>Rp <?php echo number_format($si->subtotal) ?></td>
+                                </tr>
 
                             <?php } ?>
                         </tbody>
                         <tfoot>
-                            <?php foreach($table_invoice as $i){ ?>
-                            <tr>
-                                <td style="text-align:center; vertical-align: middle" colspan="2"><b>Grand
-                                        Total</b></td>
-                                <td><?php echo ($i->banyak) ?></td>
-                                <td>
-                                    <b>Rp <?php echo number_format($i->grandtotal) ?></b>
-                                </td>
-                            </tr>
+                            <?php foreach ($table_invoice as $i) { ?>
+                                <tr>
+                                    <td style="text-align:center; vertical-align: middle" colspan="2"><b>Grand
+                                            Total</b></td>
+                                    <td><?php echo ($i->banyak) ?></td>
+                                    <td>
+                                        <b>Rp <?php echo number_format($i->grandtotal) ?></b>
+                                    </td>
+                                </tr>
                             <?php } ?>
                         </tfoot>
 

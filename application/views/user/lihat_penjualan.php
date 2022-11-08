@@ -23,14 +23,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- <?php
-                                foreach ($tb_jual as $data) :
-                                ?>
+                        <?php
+                        foreach ($tb_jual as $data) :
+                        ?>
                             <tr>
                                 <td><?= $data->ref; ?></td>
                                 <td><?= $data->nama_pembeli; ?></td>
                                 <td><?= date('j F Y', strtotime($data->tgl_beli)); ?></td>
-                                <td><?= $data->nama_obat; ?></td>
+                                <td><?= $data->nama_kopi; ?></td>
                                 <td>Rp <?= number_format($data->h_beli); ?></td>
                                 <td><?= $data->banyak; ?></td>
                                 <td>Rp <?php echo number_format($data->grandtotal) ?></td>
@@ -42,7 +42,7 @@
                                 </td>
                             </tr>
 
-                        <?php endforeach; ?> -->
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

@@ -17,37 +17,33 @@
                 <th>Banyak</th>
                 <th>Total Keseluruhan</th>
             </tr>
-
-            <!-- <?php
+            <?php
                     $subtotal = 0;
                     foreach ($datafilter as $data) : ?>
                 <tr>
                     <td><?= $data->ref; ?></td>
                     <td><?= $data->nama_pembeli; ?></td>
-                    <td><?= $data->nama_obat; ?></td>
+                    <td><?= $data->nama_kopi; ?></td>
                     <td><?= date('j F Y', strtotime($data->tgl_beli)); ?></td>
                     <td><?= $data->banyak; ?></td>
                     <td>Rp <?= number_format($data->subtotal); ?></td>
                 </tr>
-            <?php endforeach; ?> -->
-
-            <!-- <?php $subtotal += $data->subtotal; ?>
+            <?php endforeach; ?>
+            <?php $total2 += $data->grandtotal; ?>
             <tr>
                 <td style="text-align:center; vertical-align: middle" colspan="5"><b>
                         Total</b></td>
                 <td id="val">
-                    <b>aaa</b>
+                    <b>Rp<?php echo number_format($total2) ?></b>
                 </td>
-            </tr> -->
+            </tr>
         </table>
     </div>
-
-    <!-- this row will not appear when printing -->
+    this row will not appear when printing
     <div class="row m-3">
         <div class="col-xs-12">
             <button class="btn btn-default" onclick="window.print();"><i class="fa fa-print"></i>
                 Cetak</button>
-
         </div>
     </div>
 </div>

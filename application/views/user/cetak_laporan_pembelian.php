@@ -18,19 +18,19 @@
                 <th>Total Keseluruhan</th>
             </tr>
 
-            <!-- <?php
+            <?php
                     $total2 = 0;
                     foreach ($datafilter as $data) : ?>
                 <tr>
                     <td><?= $data->ref; ?></td>
                     <td><?= $data->nama_pemasok; ?></td>
-                    <td><?= $data->nama_obat; ?></td>
+                    <td><?= $data->nama_kopi; ?></td>
                     <td><?= date('j F Y', strtotime($data->tgl_beli)); ?></td>
                     <td><?= $data->banyak; ?></td>
                     <td>Rp <?= number_format($data->subtotal); ?></td>
                 </tr>
-            <?php endforeach; ?> -->
-            <!-- <?php
+            <?php endforeach; ?>
+            <?php
                     $total2 += $data->grandtotal;
                     ?>
             <tr>
@@ -38,7 +38,7 @@
                 <td>
                     <b>Rp <?php echo number_format($total2) ?></b>
                 </td>
-            </tr> -->
+            </tr>
         </table>
     </div>
 

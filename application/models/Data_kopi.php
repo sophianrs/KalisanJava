@@ -12,7 +12,7 @@ class Data_kopi extends CI_Model
         return $this->db->get($table)->result();
     }
 
-    // method tambah obat
+    // method tambah kopi
     public function tambah_kopi()
     {
 
@@ -86,25 +86,25 @@ class Data_kopi extends CI_Model
         return $this->db->query('SELECT * FROM tb_kopi WHERE kedaluwarsa BETWEEN NOW() AND DATE_ADD(NOW(), INTERVAL 15 DAY)');
     }
 
-    // Stok obat hampir habis 
+    // Stok kopi hampir habis 
     public function almoststok()
     {
         return $this->db->query('SELECT * FROM tb_kopi WHERE stok BETWEEN 1 AND 9');
     }
 
-    // stok obat sudah habis 
+    // stok kopi sudah habis 
     public function habis_stok()
     {
         return $this->db->query('SELECT * FROM tb_kopi WHERE stok BETWEEN 0 AND 0');
     }
 
-    // hitung total obat
-    public function total_obat()
+    // hitung total kopi
+    public function total_kopi()
     {
-        $to =  $this->db->query('SELECT *, SUM(tb_kopi.stok) as sumObat FROM tb_kopi');
+        $to =  $this->db->query('SELECT *, SUM(tb_kopi.stok) as sumkopi FROM tb_kopi');
         if ($to->num_rows() > 0) {
             foreach ($to->result() as $get) {
-                return $get->sumObat;
+                return $get->sumkopi;
             }
         } else {
             return FALSE;
@@ -190,7 +190,7 @@ class Data_kopi extends CI_Model
 
     // JOIN TABEL
 
-    // ambil kategori muncul di form obat
+    // ambil kategori muncul di form kopi
     public function get_kategori()
     {
         $data = array();
@@ -220,8 +220,8 @@ class Data_kopi extends CI_Model
     }
 
 
-    // edit data obat biar bisa muncul pemasok kategori
-    public function edit_data_obat($table)
+    // edit data kopi biar bisa muncul pemasok kategori
+    public function edit_data_kopi($table)
     {
         return $this->db->get($table)->result();
     }
@@ -229,8 +229,8 @@ class Data_kopi extends CI_Model
 
     // WILAYAH MODEL EDIT DATA
 
-    // method ubah obat
-    public function edit_obatan()
+    // method ubah kopi
+    public function edit_kopi()
     {
 
         $data = [
@@ -278,8 +278,8 @@ class Data_kopi extends CI_Model
 
     // WILAYAH MODEL HAPUS DATA
 
-    // hapus obat
-    public function hapus_obat($id)
+    // hapus kopi
+    public function hapus_kopi($id)
     {
         $this->db->delete('tb_kopi', ['id' => $id]);
     }
