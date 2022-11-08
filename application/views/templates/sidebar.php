@@ -4,7 +4,7 @@
     <div class="d-flex justify-content-center">
         <!-- logo info -->
         <div class=" logo_pic" style="margin: 10px;">
-            <img src="<?php echo base_url('assets/img/profile/logoo.png') ?>" alt="..." class="img-circle" width="200" height="50"></a>
+            <img src="<?php echo base_url('assets/img/profile/logoo.png') ?>" alt="..." class="img-fluid" alt="Responsive image"></a>
         </div>
     </div>
     <div class="profile">
