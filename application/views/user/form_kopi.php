@@ -30,7 +30,7 @@
 
                 <div class="row justify-content-center pt-2">
                     <div class="col-2">
-                        <label for="stok" class="col-form-label">Banyak Stok (Kg)</label>
+                        <label for="stok" class="col-form-label">Banyak Stok (sachet)</label>
                     </div>
                     <div class="col-3">
                         <input type="text" id="stok" name="stok" class="form-control" value="<?= set_value('stok') ?>" data-validate-minmax="0,1000">
