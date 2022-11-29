@@ -472,6 +472,13 @@ class User extends CI_Controller
         $this->session->set_flashdata('flash', 'dihapus');
         redirect('user/lihat_pemasok');
     }
+    // met
+    public function hapus_penjualan($id_jual)
+    {
+        $this->Data_kopi->hapus_penjualan($id_jual);
+        $this->session->set_flashdata('flash', 'dihapus');
+        redirect('user/lihat_penjualan');
+    }
 
     // TRANSAKSI
     function getmedbysupplier()
