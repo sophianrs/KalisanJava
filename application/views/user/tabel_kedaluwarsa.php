@@ -24,19 +24,19 @@
                     </thead>
                     <tbody>
                         <?php
-                                $i = 1;
-                                foreach ($table_almostexp as $data) :
-                                ?>
-                        <tr>
-                            <td><?= $i++; ?></td>
-                            <td><?= $data->nama_kopi; ?></td>
-                            <td><?= $data->penyimpanan; ?></td>
-                            <td><?= $data->nama_kat; ?></td>
-                            <td><?= $data->stok; ?></td>
-                            <td><?= $data->nama_pemasok; ?></td>
-                            <td><?= date('j F Y', strtotime($data->kedaluwarsa)); ?></td>
-                            <td>Rp<?= number_format($data->h_jual); ?></td>
-                        </tr>
+                        $i = 1;
+                        foreach ($table_almostexp as $data) :
+                        ?>
+                            <tr>
+                                <td><?= $i++; ?></td>
+                                <td><?= $data->nama_kopi; ?></td>
+                                <td><?= $data->penyimpanan; ?></td>
+                                <td><?= $data->id_kat; ?></td>
+                                <td><?= $data->stok; ?></td>
+                                <td><?= $data->id_pemasok; ?></td>
+                                <td><?= date('j F Y', strtotime($data->kedaluwarsa)); ?></td>
+                                <td>Rp<?= number_format($data->h_jual); ?></td>
+                            </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
@@ -68,9 +68,9 @@
                     </thead>
                     <tbody>
                         <?php
-                                $i = 1;
-                                foreach ($table_exp as $data) :
-                                ?>
+                        $i = 1;
+                        foreach ($table_exp as $data) :
+                        ?>
                             <tr>
                                 <td><?= $i++; ?></td>
                                 <td><?= $data->nama_kopi; ?></td>

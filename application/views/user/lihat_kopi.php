@@ -35,9 +35,9 @@
                     </thead>
                     <tbody>
                         <?php
-                                $i = 1;
-                                foreach ($kopi as $data) :
-                                ?>
+                        $i = 1;
+                        foreach ($kopi as $data) :
+                        ?>
                             <tr>
                                 <td><?= $i++; ?></td>
                                 <td><?= $data->nama_kopi; ?></td>
@@ -48,9 +48,9 @@
                                 <td><?= date('j F Y', strtotime($data->kedaluwarsa)); ?></td>
                                 <td>Rp<?= number_format($data->h_jual); ?></td>
                                 <td>
-                                    <a href="<?= base_url('user/edit_kopi/') . $data->id ?>"><button type="edit" class="sbtn btn-success"><i class="fas fa-edit"></i></button></a>
+                                    <a href="<?= base_url('user/edit_kopi/') . $data->id_kopi ?>"><button type="edit" class="sbtn btn-success"><i class="fas fa-edit"></i></button></a>
 
-                                    <a href="<?= base_url('user/hapus_kopi/') . $data->id ?>"><button type="delete" class="sbtn btn-danger" onclick="return confirm('Yakin?')"><i class="fas fa-trash"></i></button></a>
+                                    <a href="<?= base_url('user/hapus_kopi/') . $data->id_kopi ?>"><button type="delete" class="sbtn btn-danger" onclick="return confirm('Yakin?')"><i class="fas fa-trash"></i></button></a>
                                 </td>
                             </tr>
 

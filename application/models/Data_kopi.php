@@ -12,6 +12,17 @@ class Data_kopi extends CI_Model
         return $this->db->get($table)->result();
     }
 
+    // nampilin join antara tabel kopi dan tabel pemasok dan tabel kategori
+    public function joinKopi()
+    {
+        $this->db->select("*");
+        $this->db->from("tb_kopi");
+        $this->db->join("tb_pemasok", "tb_pemasok.id_pemasok = tb_kopi.id_pemasok");
+        $this->db->join("tb_kategori", "tb_kategori.id_kat = tb_kopi.id_kat");
+
+        return $this->db->get()->result();
+    }
+
     // method tambah kopi
     public function tambah_kopi()
     {
@@ -20,11 +31,11 @@ class Data_kopi extends CI_Model
             'nama_kopi' => $this->input->post('nama_kopi', true),
             'penyimpanan' => $this->input->post('penyimpanan', true),
             'stok' => $this->input->post('stok', true),
-            'nama_kat' => $this->input->post('nama_kat', true),
+            'id_kat' => $this->input->post('id_kat', true),
             'kedaluwarsa' => $this->input->post('kedaluwarsa', true),
             'h_jual' => $this->input->post('harga_jual', true),
             'h_beli' => $this->input->post('harga_beli', true),
-            'nama_pemasok' => $this->input->post('nama_pemasok', true),
+            'id_pemasok' => $this->input->post('id_pemasok', true),
 
 
         ];
@@ -58,10 +69,23 @@ class Data_kopi extends CI_Model
     }
 
 
-    // GET HIDDEN ID untuk ubah data
-    public function getKopi($id)
+    // edit join kopi
+    public function tampil_kopi($id_kopi)
     {
-        return $this->db->get_where('tb_kopi', ['id' => $id])->row_array();
+        $this->db->select("*");
+        $this->db->from("tb_kopi");
+        $this->db->join("tb_pemasok", "tb_pemasok.id_pemasok = tb_kopi.id_pemasok");
+        $this->db->join("tb_kategori", "tb_kategori.id_kat = tb_kopi.id_kat");
+        $this->db->where("tb_kopi.id_kopi = $id_kopi");
+        return $this->db->get()->result();
+    }
+
+    // GET HIDDEN ID untuk ubah data
+    public function getKopi($id_kopi)
+    {
+        return $this->db->get_where('tb_kopi', ['id_kopi' => $id_kopi])->row_array();
+        // $query = $this->db->query("SELECT * FROM tb_kopi WHERE id_kopi = $id_kopi ORDER BY id_kopi ASC");
+        // return $query->result();
     }
     public function getKategori($id_kat)
     {
@@ -77,25 +101,25 @@ class Data_kopi extends CI_Model
     // sudah kedaluwarsa
     public function expired()
     {
-        return $this->db->query('SELECT * FROM tb_kopi WHERE kedaluwarsa BETWEEN DATE_SUB(NOW(), INTERVAL 40 YEAR) AND NOW()');
+        return $this->db->query('SELECT * FROM tb_kopi JOIN tb_kategori ON tb_kategori.id_kat = tb_kopi.id_kat JOIN tb_pemasok ON tb_pemasok.id_pemasok = tb_kopi.id_pemasok WHERE kedaluwarsa BETWEEN DATE_SUB(NOW(), INTERVAL 40 YEAR) AND NOW()');
     }
 
     // hampir kedaluwarsa
     public function almostexp()
     {
-        return $this->db->query('SELECT * FROM tb_kopi WHERE kedaluwarsa BETWEEN NOW() AND DATE_ADD(NOW(), INTERVAL 15 DAY)');
+        return $this->db->query('SELECT * FROM tb_kopi JOIN tb_kategori ON tb_kategori.id_kat = tb_kopi.id_kat JOIN tb_pemasok ON tb_pemasok.id_pemasok = tb_kopi.id_pemasok WHERE kedaluwarsa BETWEEN NOW() AND DATE_ADD(NOW(), INTERVAL 15 DAY)');
     }
 
     // Stok kopi hampir habis 
     public function almoststok()
     {
-        return $this->db->query('SELECT * FROM tb_kopi WHERE stok BETWEEN 1 AND 9');
+        return $this->db->query('SELECT * FROM tb_kopi JOIN tb_kategori ON tb_kategori.id_kat = tb_kopi.id_kat JOIN tb_pemasok ON tb_pemasok.id_pemasok = tb_kopi.id_pemasok WHERE stok BETWEEN 1 AND 9');
     }
 
     // stok kopi sudah habis 
     public function habis_stok()
     {
-        return $this->db->query('SELECT * FROM tb_kopi WHERE stok BETWEEN 0 AND 0');
+        return $this->db->query('SELECT * FROM tb_kopi JOIN tb_kategori ON tb_kategori.id_kat = tb_kopi.id_kat JOIN tb_pemasok ON tb_pemasok.id_pemasok = tb_kopi.id_pemasok WHERE stok BETWEEN 0 AND 0');
     }
 
     // hitung total kopi
@@ -193,19 +217,21 @@ class Data_kopi extends CI_Model
     // ambil kategori muncul di form kopi
     public function get_kategori()
     {
-        $data = array();
-        $query = $this->db->get('tb_kategori')->result_array();
+        $query = $this->db->query("SELECT * FROM tb_kategori ORDER BY id_kat ASC");
+        return $query->result();
+        // $data = array();
+        // $query = $this->db->get('tb_kategori')->result_array();
 
-        if (is_array($query) && count($query) > 0) {
-            foreach ($query as $row) {
-                $data[$row['nama_kat']] = $row['nama_kat'];
-            }
-        }
-        asort($data);
-        return $data;
+        // if (is_array($query) && count($query) > 0) {
+        //     foreach ($query as $row) {
+        //         $data[$row['nama_kat']] = $row['nama_kat'];
+        //     }
+        // }
+        // asort($data);
+        // return $data;
     }
 
-    function get_pemasok()
+    function get_pemasok2()
     {
         $data = array();
         $query = $this->db->get('tb_pemasok')->result_array();
@@ -217,6 +243,12 @@ class Data_kopi extends CI_Model
         }
         asort($data);
         return $data;
+    }
+
+    public function get_pemasok()
+    {
+        $query = $this->db->query("SELECT * FROM tb_pemasok ORDER BY id_pemasok ASC");
+        return $query->result();
     }
 
 
@@ -237,14 +269,14 @@ class Data_kopi extends CI_Model
             'nama_kopi' => $this->input->post('nama_kopi', true),
             'penyimpanan' => $this->input->post('penyimpanan', true),
             'stok' => $this->input->post('stok', true),
-            'nama_kat' => $this->input->post('nama_kat', true),
+            'id_kat' => $this->input->post('id_kat', true),
             'kedaluwarsa' => $this->input->post('kedaluwarsa', true),
             'h_jual' => $this->input->post('h_jual', true),
             'h_beli' => $this->input->post('h_beli', true),
-            'nama_pemasok' => $this->input->post('nama_pemasok', true),
+            'id_pemasok' => $this->input->post('id_pemasok', true),
         ];
 
-        $this->db->where('id', $this->input->post('id'));
+        $this->db->where('id_kopi', $this->input->post('id_kopi'));
         $this->db->update('tb_kopi', $data);
     }
 
@@ -279,9 +311,9 @@ class Data_kopi extends CI_Model
     // WILAYAH MODEL HAPUS DATA
 
     // hapus kopi
-    public function hapus_kopi($id)
+    public function hapus_kopi($id_kopi)
     {
-        $this->db->delete('tb_kopi', ['id' => $id]);
+        $this->db->delete('tb_kopi', ['id_kopi' => $id_kopi]);
     }
 
     // hapus kategori
@@ -317,11 +349,30 @@ class Data_kopi extends CI_Model
         return $hasil->result();
     }
 
+    function get_product2($nama_kopi)
+    {
+        $hasil = array();
+        $hsl = $this->db->query("SELECT * FROM tb_kopi WHERE nama_kopi='$nama_kopi'");
+
+        if ($hsl->num_rows() > 0) {
+            foreach ($hsl->result() as $data) {
+                $hasil = array(
+                    'nama_kopi' => $data->nama_kopi,
+                    'stok' => $data->stok,
+                    'nama_kat' => $data->nama_kat,
+                    'h_jual' => $data->h_jual,
+                    'h_beli' => $data->h_beli,
+                );
+            }
+        }
+        return $hasil;
+    }
 
     function get_product($nama_kopi)
     {
         $hasil = array();
-        $hsl = $this->db->query("SELECT * FROM tb_kopi WHERE nama_kopi='$nama_kopi'");
+        $hsl = $this->db->query("SELECT * FROM tb_kopi JOIN tb_kategori ON tb_kategori.id_kat = tb_kopi.id_kat JOIN tb_pemasok ON tb_pemasok.id_pemasok = tb_kopi.id_pemasok WHERE nama_kopi='$nama_kopi'");
+
         if ($hsl->num_rows() > 0) {
             foreach ($hsl->result() as $data) {
                 $hasil = array(
@@ -339,12 +390,20 @@ class Data_kopi extends CI_Model
 
     function get_medicine()
     {
+        // $this->db->select("*");
+        // $this->db->from("tb_kopi");
+        // $this->db->join("tb_pemasok", "tb_pemasok.id_pemasok = tb_kopi.id_pemasok");
+        // $this->db->join("tb_kategori", "tb_kategori.id_kat = tb_kopi.id_kat");
+        // $this->db->order_by("tb_kopi.id_kopi", "ASC");
+        // return $this->db->get()->result();
+
         $data = array();
         $query = $this->db->get('tb_kopi')->result_array();
 
         if (is_array($query) && count($query) > 0) {
             foreach ($query as $row) {
                 $data[$row['nama_kopi']] = $row['nama_kopi'];
+                // $data[$row['id_kopi']] = $row['id_kopi'];
             }
         }
         asort($data);

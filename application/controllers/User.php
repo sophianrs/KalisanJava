@@ -137,7 +137,8 @@ class User extends CI_Controller
         $this->session->userdata('email')])->row_array();
 
         // queri pemanggilan tabel di DB
-        $data['kopi'] = $this->Data_kopi->getDataKopi('tb_kopi');
+        // $data['kopi'] = $this->Data_kopi->getDataKopi('tb_kopi');
+        $data['kopi'] = $this->Data_kopi->joinKopi();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -230,11 +231,11 @@ class User extends CI_Controller
         $this->form_validation->set_rules('nama_kopi', 'Nama Pemasok', 'required');
         $this->form_validation->set_rules('penyimpanan', 'Penyimpanan', 'required');
         $this->form_validation->set_rules('stok', 'Stok', 'required|numeric');
-        $this->form_validation->set_rules('nama_kat', 'Kategori', 'required');
+        $this->form_validation->set_rules('id_kat', 'Kategori', 'required');
         $this->form_validation->set_rules('kedaluwarsa', 'Kedaluwarsa', 'required');
         $this->form_validation->set_rules('harga_jual', 'Harga Jual', 'required|numeric');
         $this->form_validation->set_rules('harga_beli', 'Harga Beli', 'required|numeric');
-        $this->form_validation->set_rules('nama_pemasok', 'Nama Pemasok', 'required');
+        $this->form_validation->set_rules('id_pemasok', 'Nama Pemasok', 'required');
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header', $data);
@@ -301,7 +302,7 @@ class User extends CI_Controller
         $data['title'] = 'Tambah Pembelian dari Pemasok';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $data['get_pemasok'] = $this->Data_kopi->get_pemasok();
+        $data['get_pemasok'] = $this->Data_kopi->get_pemasok2();
         $data['get_med'] = $this->Data_kopi->get_medicine();
 
         $this->form_validation->set_rules('nama_pemasok', 'Nama Pemasok', 'required');
@@ -350,12 +351,14 @@ class User extends CI_Controller
     // WILAYAH EDIT EDIT DATA //
 
     // edit kopi
-    public function edit_kopi($id)
+    public function edit_kopi($id_kopi)
     {
 
         $data['title'] = 'Ubah Data Kopi';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['kopi'] = $this->Data_kopi->getKopi($id);
+        // $data['kopi'] = $this->Data_kopi->getKopi($id_kopi);
+
+        $data['tampil_kopi'] = $this->Data_kopi->tampil_kopi($id_kopi);
 
         $data['get_kat'] = $this->Data_kopi->get_kategori();
         $data['get_pemasok'] = $this->Data_kopi->get_pemasok();
@@ -364,11 +367,11 @@ class User extends CI_Controller
         $this->form_validation->set_rules('nama_kopi', 'Nama Pemasok', 'required');
         $this->form_validation->set_rules('penyimpanan', 'Penyimpanan', 'required');
         $this->form_validation->set_rules('stok', 'Stok', 'required|numeric');
-        $this->form_validation->set_rules('nama_kat', 'Kategori', 'required');
+        $this->form_validation->set_rules('id_kat', 'Kategori', 'required');
         $this->form_validation->set_rules('kedaluwarsa', 'Kedaluwarsa', 'required');
         $this->form_validation->set_rules('h_jual', 'Harga Jual', 'required|numeric');
         $this->form_validation->set_rules('h_beli', 'Harga Beli', 'required|numeric');
-        $this->form_validation->set_rules('nama_pemasok', 'Nama Pemasok', 'required');
+        $this->form_validation->set_rules('id_pemasok', 'Nama Pemasok', 'required');
 
 
         if ($this->form_validation->run() == FALSE) {
@@ -447,9 +450,9 @@ class User extends CI_Controller
     // WILAYAH HAPUS HAPUS DATA
 
     // method hapus data kopi
-    public function hapus_kopi($id)
+    public function hapus_kopi($id_kopi)
     {
-        $this->Data_kopi->hapus_kopi($id);
+        $this->Data_kopi->hapus_kopi($id_kopi);
         $this->session->set_flashdata('flash', 'dihapus');
         redirect('user/lihat_kopi');
     }
@@ -482,6 +485,13 @@ class User extends CI_Controller
     {
         $nama_kopi = $this->input->post('nama_kopi');
         $data = $this->Data_kopi->get_product($nama_kopi);
+        echo json_encode($data);
+    }
+
+    function product2()
+    {
+        $nama_kopi = $this->input->post('nama_kopi');
+        $data = $this->Data_kopi->get_product2($nama_kopi);
         echo json_encode($data);
     }
 

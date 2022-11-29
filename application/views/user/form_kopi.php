@@ -44,13 +44,13 @@
                     </div>
                     <div class="col-3">
 
-                        <select name="nama_kat" id="nama_kat" class="select2_single form-control" tabindex="-1" required="required">
+                        <select name="id_kat" id="id_kat" class="select2_single form-control" tabindex="-1" required="required">
                             <option selected="true" value="" disabled></option>
                             <?php foreach ($get_kat as $gk) { ?>
-                                <option value="<?php echo $gk; ?>"><?php echo $gk; ?></option>
+                                <option value="<?php echo $gk->id_kat; ?>"><?php echo $gk->nama_kat; ?></option>
                             <?php  } ?>
                         </select>
-                        <?= form_error('nama_kat', '<small class="text-danger pl-3">', '</small>'); ?>
+                        <?= form_error('id_kat', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                 </div>
 
@@ -94,13 +94,13 @@
                         <label for="nama_pemasok" class="col-form-label">Nama Pemasok</label>
                     </div>
                     <div class="col-3">
-                        <select name="nama_pemasok" id="nama_pemasok" class="select2_single form-control" tabindex="-1" required="required">
+                        <select name="id_pemasok" id="id_pemasok" class="select2_single form-control" tabindex="-1" required="required">
                             <option selected="true" value="" disabled></option>
-                            <?php foreach ($get_pemasok as $gs) { ?>
-                                <option value="<?php echo $gs; ?>"><?php echo $gs; ?></option>
+                            <?php foreach ($get_pemasok as $gp) { ?>
+                                <option value="<?php echo $gp->id_pemasok; ?>"><?php echo $gp->nama_pemasok; ?></option>
                             <?php  } ?>
                         </select>
-                        <?= form_error('nama_pemasok', '<small class="text-danger pl-3">', '</small>'); ?>
+                        <?= form_error('id_pemasok', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                 </div>
 

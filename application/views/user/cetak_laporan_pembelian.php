@@ -19,8 +19,8 @@
             </tr>
 
             <?php
-                    $total2 = 0;
-                    foreach ($datafilter as $data) : ?>
+            $subtotal = 0;
+            foreach ($datafilter as $data) : ?>
                 <tr>
                     <td><?= $data->ref; ?></td>
                     <td><?= $data->nama_pemasok; ?></td>
@@ -31,12 +31,14 @@
                 </tr>
             <?php endforeach; ?>
             <?php
-                    $total2 += $data->grandtotal;
-                    ?>
+            foreach ($datafilter as $data) :
+                $total2[] = $data->grandtotal;
+                $total3 = array_sum($total2); ?>
+            <?php endforeach; ?>
             <tr>
-                <td style="text-align:center; vertical-align: middle" colspan="4"><b>TOTAL</b></b></td>
+                <td style="text-align:center; vertical-align: middle" colspan="5"><b>TOTAL</b></b></td>
                 <td>
-                    <b>Rp <?php echo number_format($total2) ?></b>
+                    <b>Rp <?php echo number_format($total3) ?></b>
                 </td>
             </tr>
         </table>

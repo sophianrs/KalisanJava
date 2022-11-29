@@ -100,11 +100,11 @@
     addpenjualan.onclick = function(event) {
         penjualan.row.add([
             '<select required="required" style="width:100%" class="form-control nama_kopi" id="nama_kopi' +
-            counter + '" name="nama_kopi[]" data-stok="#stok' + counter + '" data-nama_kat="#nama_kat' +
+            counter + '" name="nama_kopi[]" data-stok="#stok' + counter + '" data-nama_kat="#id_kat' +
             counter + '" data-h_beli="#h_beli' + counter +
             '"><option selected="true" value="" disabled ></option><?php foreach ($get_med as $gm) { ?><option value="<?php echo $gm; ?>"><?php echo $gm; ?></option><?php  } ?></select>',
             '<input id="stok' + counter + '" name="stok[]" class="form-control stok" readonly >',
-            '<input id="nama_kat' + counter + '" name="nama_kat[]" class="form-control" readonly>',
+            '<input id="id_kat' + counter + '" name="id_kat[]" class="form-control" readonly>',
             '<input id="h_beli' + counter +
             '" name="h_beli[]" class="form-control h_beli" readonly>',
             '<input type="number" id="banyak' + counter +
