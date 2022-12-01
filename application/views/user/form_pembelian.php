@@ -13,13 +13,13 @@
 
                         <div class="row justify-content-center pt-2">
                             <div class="col-2">
-                                <label for="nama_pemasok" class="col-form-label">Nama Pemasok</label>
+                                <label for="id_pemasok" class="col-form-label">Nama Pemasok</label>
                             </div>
                             <div class="col-3">
-                                <select name="nama_pemasok" id="nama_pemasok" class="select2_single form-control nama_pemasok" tabindex="-1" required="required">
+                                <select name="id_pemasok" id="id_pemasok" class="select2_single form-control id_pemasok" tabindex="-1" required="required">
                                     <option selected="true" value="" disabled></option>
                                     <?php foreach ($get_pemasok as $gs) { ?>
-                                        <option value="<?php echo $gs; ?>"><?php echo $gs; ?></option>
+                                        <option value="<?php echo $gs->id_pemasok; ?>"><?php echo $gs->nama_pemasok; ?></option>
                                     <?php  } ?>
                                 </select>
                                 <?= form_error('nama_pemasok', '<small class="text-danger pl-3">', '</small>'); ?>
@@ -101,23 +101,25 @@
         "searching": false,
     });
 
-    $(document).on('change', '.nama_pemasok', function() {
+    $(document).on('change', '.id_pemasok', function() {
 
-        var nama_pemasok = $('.nama_pemasok').val();
+        var id_pemasok = $('.id_pemasok').val();
 
         $.ajax({
             url: "<?php echo base_url('user/getmedbysupplier') ?>",
             method: "POST",
             data: {
-                nama_pemasok: nama_pemasok
+                id_pemasok: id_pemasok
             },
             async: false,
             dataType: 'json',
             success: function(data) {
+                // console.log(data);
                 var html = '';
                 var i;
                 html += '<option selected="true" value="" disabled >Pilih Kopi</option>';
                 for (i = 0; i < data.length; i++) {
+                    // console.log(data[i]);
                     html += '<option>' + data[i].nama_kopi + '</option>';
                 }
                 $('.nama_kopi').html(html);
@@ -131,11 +133,11 @@
     addpembelian.onclick = function(event) {
         pembelian.row.add([
             '<select required="required" style="width:100%;" class="form-control nama_kopi" id="nama_kopi' +
-            count + '" name="nama_kopi[]" data-stok="#stok' + count + '" data-nama_kat="#nama_kat' + count +
+            count + '" name="nama_kopi[]" data-stok="#stok' + count + '" data-id_kat="#id_kat' + count +
             '" data-h_beli="#h_beli' + count +
             '"><option selected="true" value="" disabled >Pilih Kopi</option></select>',
             '<input id="stok' + count + '" name="stok[]" class="form-control stok" readonly >',
-            '<input id="nama_kat' + count + '" name="nama_kat[]" class="form-control nama_kat" readonly>',
+            '<input id="id_kat' + count + '" name="id_kat[]" class="form-control id_kat" readonly>',
             '<input id="h_beli' + count +
             '" name="h_beli[]" class="form-control h_beli" readonly>',
             '<input type="number" id="banyak' + count +
@@ -175,7 +177,7 @@
 
         $.ajax({
             type: "POST",
-            url: "<?php echo base_url('user/product') ?>",
+            url: "<?php echo base_url('user/product3') ?>",
             dataType: "JSON",
             data: {
                 nama_kopi: nama_kopi
@@ -183,8 +185,9 @@
             cache: false,
             success: function(data) {
                 $.each(data, function(nama_kopi, stok, nama_kat, h_beli) {
+                    // console.log(data.id_kat);
                     $($select.data('stok')).val(data.stok);
-                    $($select.data('nama_kat')).val(data.nama_kat);
+                    $($select.data('id_kat')).val(data.nama_kat);
                     $($select.data('h_beli')).val(data.h_beli);
                 });
             }
@@ -197,24 +200,41 @@
     });
 
     function updateSubtotalp() {
-
         $(".banyak").each(function() {
             var $row = $(this).closest('tr');
             var unitStock = parseInt($row.find('.stok').val());
             var unitCount = parseInt($row.find('.banyak').val());
 
-            if (unitCount < 0) {
+
+            if (unitCount > unitStock) {
+                $row.find('.banyak').val(unitStock);
+                alert("PERINGATAN ! PENJUALAN MELEBIHI SISA STOK");
+                updateSubtotalp();
+            } else if (unitCount < 0) {
                 $row.find('.banyak').val(0);
                 updateSubtotalp();
-
             } else {
                 var Sub = parseInt(($row.find('.h_beli').val()) * unitCount);
                 $row.find('.subtotal').val(Sub);
                 updateTotal();
-
-
             }
         });
+
+        // $(".banyak").each(function() {
+        //     var $row = $(this).closest('tr');
+        //     var unitStock = parseInt($row.find('.stok').val());
+        //     var unitCount = parseInt($row.find('.banyak').val());
+
+        //     if (unitCount < 0) {
+        //         $row.find('.banyak').val(0);
+        //         updateSubtotalp();
+
+        //     } else {
+        //         var Sub = parseInt(($row.find('.h_beli').val()) * unitCount);
+        //         $row.find('.subtotal').val(Sub);
+        //         updateTotal();
+        //     }
+        // });
     }
 
     function updateTotal() {

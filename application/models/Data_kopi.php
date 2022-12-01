@@ -233,16 +233,19 @@ class Data_kopi extends CI_Model
 
     function get_pemasok2()
     {
-        $data = array();
-        $query = $this->db->get('tb_pemasok')->result_array();
+        $query = $this->db->query("SELECT * FROM tb_pemasok");
 
-        if (is_array($query) && count($query) > 0) {
-            foreach ($query as $row) {
-                $data[$row['nama_pemasok']] = $row['nama_pemasok'];
-            }
-        }
-        asort($data);
-        return $data;
+        return $query->result();
+        // $data = array();
+        // $query = $this->db->get('tb_pemasok')->result_array();
+
+        // if (is_array($query) && count($query) > 0) {
+        //     foreach ($query as $row) {
+        //         $data[$row['nama_pemasok']] = $row['nama_pemasok'];
+        //     }
+        // }
+        // asort($data);
+        // return $data;
     }
 
     public function get_pemasok()
@@ -343,30 +346,30 @@ class Data_kopi extends CI_Model
     }
 
     // TRASAKSI
-    function getmedbysupplier($nama_pemasok)
+    function getmedbysupplier($id_pemasok)
     {
-        $hasil = $this->db->query("SELECT * FROM tb_kopi WHERE nama_pemasok='$nama_pemasok'");
+        $hasil = $this->db->query("SELECT * FROM tb_kopi  WHERE id_pemasok='$id_pemasok'");
         return $hasil->result();
     }
 
-    function get_product2($nama_kopi)
-    {
-        $hasil = array();
-        $hsl = $this->db->query("SELECT * FROM tb_kopi WHERE nama_kopi='$nama_kopi'");
+    // function get_product2($nama_kopi)
+    // {
+    //     $hasil = array();
+    //     $hsl = $this->db->query("SELECT * FROM tb_kopi WHERE nama_kopi='$nama_kopi'");
 
-        if ($hsl->num_rows() > 0) {
-            foreach ($hsl->result() as $data) {
-                $hasil = array(
-                    'nama_kopi' => $data->nama_kopi,
-                    'stok' => $data->stok,
-                    'nama_kat' => $data->nama_kat,
-                    'h_jual' => $data->h_jual,
-                    'h_beli' => $data->h_beli,
-                );
-            }
-        }
-        return $hasil;
-    }
+    //     if ($hsl->num_rows() > 0) {
+    //         foreach ($hsl->result() as $data) {
+    //             $hasil = array(
+    //                 'nama_kopi' => $data->nama_kopi,
+    //                 'stok' => $data->stok,
+    //                 'nama_kat' => $data->nama_kat,
+    //                 'h_jual' => $data->h_jual,
+    //                 'h_beli' => $data->h_beli,
+    //             );
+    //         }
+    //     }
+    //     return $hasil;
+    // }
 
     function get_product($nama_kopi)
     {
@@ -378,6 +381,26 @@ class Data_kopi extends CI_Model
                 $hasil = array(
                     'nama_kopi' => $data->nama_kopi,
                     'stok' => $data->stok,
+                    'nama_kat' => $data->nama_kat,
+                    'h_jual' => $data->h_jual,
+                    'h_beli' => $data->h_beli,
+
+                );
+            }
+        }
+        return $hasil;
+    }
+
+    function get_product3($nama_kopi)
+    {
+        $hasil = array();
+        $hsl = $this->db->query("SELECT * FROM tb_kopi JOIN tb_kategori ON tb_kategori.id_kat = tb_kopi.id_kat WHERE nama_kopi='$nama_kopi'");
+        if ($hsl->num_rows() > 0) {
+            foreach ($hsl->result() as $data) {
+                $hasil = array(
+                    'nama_kopi' => $data->nama_kopi,
+                    'stok' => $data->stok,
+                    'id_kat' => $data->id_kat,
                     'nama_kat' => $data->nama_kat,
                     'h_jual' => $data->h_jual,
                     'h_beli' => $data->h_beli,
@@ -448,7 +471,7 @@ class Data_kopi extends CI_Model
     function tambah_pembelian()
     {
 
-        $nama_pemasok = $this->input->post('nama_pemasok');
+        $id_pemasok = $this->input->post('id_pemasok');
         $tgl_beli = date("Y-m-d", strtotime($this->input->post('tgl_beli')));
         $grandtotal = $this->input->post('grandtotal');
         $ref = generateRandomString();
@@ -460,7 +483,7 @@ class Data_kopi extends CI_Model
         foreach ($nama_kopi as $key => $val) {
 
             $data[] = array(
-                'nama_pemasok' => $nama_pemasok,
+                'id_pemasok' => $id_pemasok,
                 'tgl_beli' => $tgl_beli,
                 'grandtotal' => $grandtotal,
                 'ref' => $ref,
@@ -602,6 +625,15 @@ class Data_kopi extends CI_Model
         return $run_q;
     }
 
+    function show_data_beli($where, $table)
+    {
+        $this->db->select('*');
+        $this->db->select_sum('banyak');
+        $this->db->join("tb_pemasok", "tb_pemasok.id_pemasok = $table.id_pemasok");
+        $run_q = $this->db->get_where($table, $where);
+        return $run_q;
+    }
+
     function show_invoice($where, $table)
     {
         $this->db->select('*');
@@ -629,6 +661,7 @@ class Data_kopi extends CI_Model
         $this->db->select('*');
 
         $this->db->select_sum('tb_pembelian.banyak');
+        $this->db->join("tb_pemasok", "tb_pemasok.id_pemasok = tb_pembelian.id_pemasok");
 
         $this->db->group_by('ref');
         $this->db->order_by('tgl_beli', 'DESC');

@@ -57,14 +57,14 @@ class Laporan_model extends CI_Model
 
     function filterbytanggal_beli($tanggalawal, $tanggalakhir)
     {
-        $query = $this->db->query("SELECT * from tb_pembelian where tgl_beli BETWEEN '$tanggalawal' and '$tanggalakhir' ORDER BY tgl_beli ASC ");
+        $query = $this->db->query("SELECT * from tb_pembelian JOIN tb_pemasok ON tb_pemasok.id_pemasok = tb_pembelian.id_pemasok where tgl_beli BETWEEN '$tanggalawal' and '$tanggalakhir' ORDER BY tgl_beli ASC ");
 
         return $query->result();
     }
 
     function filterbybulan_beli($tahun1, $bulanawal, $bulanakhir)
     {
-        $query = $this->db->query("SELECT * from tb_pembelian where YEAR(tgl_beli) = '$tahun1' and MONTH(tgl_beli) BETWEEN '$bulanawal' and '$bulanakhir' ORDER BY tgl_beli ASC");
+        $query = $this->db->query("SELECT * from tb_pembelian JOIN tb_pemasok ON tb_pemasok.id_pemasok = tb_pembelian.id_pemasok where YEAR(tgl_beli) = '$tahun1' and MONTH(tgl_beli) BETWEEN '$bulanawal' and '$bulanakhir' ORDER BY tgl_beli ASC");
 
         return $query->result();
     }
@@ -72,7 +72,7 @@ class Laporan_model extends CI_Model
 
     function filterbytahun_beli($tahun2)
     {
-        $query = $this->db->query("SELECT * from tb_pembelian where YEAR(tgl_beli) = '$tahun2' ORDER BY tgl_beli ASC");
+        $query = $this->db->query("SELECT * from tb_pembelian JOIN tb_pemasok ON tb_pemasok.id_pemasok = tb_pembelian.id_pemasok where YEAR(tgl_beli) = '$tahun2' ORDER BY tgl_beli ASC");
 
         return $query->result();
     }

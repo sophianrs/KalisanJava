@@ -305,7 +305,7 @@ class User extends CI_Controller
         $data['get_pemasok'] = $this->Data_kopi->get_pemasok2();
         $data['get_med'] = $this->Data_kopi->get_medicine();
 
-        $this->form_validation->set_rules('nama_pemasok', 'Nama Pemasok', 'required');
+        $this->form_validation->set_rules('id_pemasok', 'Nama Pemasok', 'required');
         $this->form_validation->set_rules('tgl_beli', 'Tanggal Beli', 'required');
 
         if ($this->form_validation->run() == FALSE) {
@@ -483,8 +483,8 @@ class User extends CI_Controller
     // TRANSAKSI
     function getmedbysupplier()
     {
-        $nama_pemasok = $this->input->post('nama_pemasok');
-        $data = $this->Data_kopi->getmedbysupplier($nama_pemasok);
+        $id_pemasok = $this->input->post('id_pemasok');
+        $data = $this->Data_kopi->getmedbysupplier($id_pemasok);
         echo json_encode($data);
     }
 
@@ -495,10 +495,10 @@ class User extends CI_Controller
         echo json_encode($data);
     }
 
-    function product2()
+    function product3()
     {
         $nama_kopi = $this->input->post('nama_kopi');
-        $data = $this->Data_kopi->get_product2($nama_kopi);
+        $data = $this->Data_kopi->get_product3($nama_kopi);
         echo json_encode($data);
     }
 
@@ -536,7 +536,7 @@ class User extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $where = array('ref' => $ref);
-        $data['table_invoice'] = $this->Data_kopi->show_data($where, 'tb_pembelian')->result();
+        $data['table_invoice'] = $this->Data_kopi->show_data_beli($where, 'tb_pembelian')->result();
         $data['show_invoice'] = $this->Data_kopi->show_invoice($where, 'tb_pembelian')->result();
 
         // queri pemanggilan tabel di DB
