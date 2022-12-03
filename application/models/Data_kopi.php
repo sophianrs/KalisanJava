@@ -443,7 +443,7 @@ class Data_kopi extends CI_Model
         $grandtotal = $this->input->post('grandtotal');
         $ref = generateRandomString();
         $nama_kopi = $this->input->post('nama_kopi');
-        $h_beli = $this->input->post('h_beli');
+        $h_jual = $this->input->post('h_jual');
         $banyak = $this->input->post('banyak');
         $subtotal = $this->input->post('subtotal');
 
@@ -455,7 +455,7 @@ class Data_kopi extends CI_Model
                 'grandtotal' => $grandtotal,
                 'ref' => $ref,
                 'nama_kopi' => $val,
-                'h_beli' => $h_beli[$key],
+                'h_jual' => $h_jual[$key],
                 'banyak' => $banyak[$key],
                 'subtotal' => $subtotal[$key],
             );

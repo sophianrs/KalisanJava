@@ -69,7 +69,7 @@
                             <?php foreach ($show_invoice as $si) { ?>
                                 <tr>
                                     <td><?php echo $si->nama_kopi ?></td>
-                                    <td>Rp <?php echo number_format($si->h_beli) ?></td>
+                                    <td>Rp <?php echo number_format($si->h_jual) ?></td>
                                     <td><?php echo $si->banyak ?></td>
                                     <td>Rp <?php echo number_format($si->subtotal) ?></td>
                                 </tr>

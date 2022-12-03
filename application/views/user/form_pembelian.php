@@ -200,41 +200,23 @@
     });
 
     function updateSubtotalp() {
+
+
         $(".banyak").each(function() {
             var $row = $(this).closest('tr');
             var unitStock = parseInt($row.find('.stok').val());
             var unitCount = parseInt($row.find('.banyak').val());
 
-
-            if (unitCount > unitStock) {
-                $row.find('.banyak').val(unitStock);
-                alert("PERINGATAN ! PENJUALAN MELEBIHI SISA STOK");
-                updateSubtotalp();
-            } else if (unitCount < 0) {
+            if (unitCount < 0) {
                 $row.find('.banyak').val(0);
                 updateSubtotalp();
+
             } else {
                 var Sub = parseInt(($row.find('.h_beli').val()) * unitCount);
                 $row.find('.subtotal').val(Sub);
                 updateTotal();
             }
         });
-
-        // $(".banyak").each(function() {
-        //     var $row = $(this).closest('tr');
-        //     var unitStock = parseInt($row.find('.stok').val());
-        //     var unitCount = parseInt($row.find('.banyak').val());
-
-        //     if (unitCount < 0) {
-        //         $row.find('.banyak').val(0);
-        //         updateSubtotalp();
-
-        //     } else {
-        //         var Sub = parseInt(($row.find('.h_beli').val()) * unitCount);
-        //         $row.find('.subtotal').val(Sub);
-        //         updateTotal();
-        //     }
-        // });
     }
 
     function updateTotal() {

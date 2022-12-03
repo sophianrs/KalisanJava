@@ -5,6 +5,17 @@
             <h6 class="m-0 font-weight-bold text-dark"><?= $title; ?></h6>
         </div>
         <div class="card-body">
+
+            <?php if ($this->session->flashdata('flash')) : ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    Data Kopi <strong>Berhasil</strong> <?= $this->session->flashdata('flash'); ?>!
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+            <?php endif; ?>
+
             <a href="<?php echo base_url('user/form_penjualan'); ?>"><button class="btn mb-3" style="background-color:#FF1493; color:white;">
                     <i class="fas fa-plus"></i> Tambah Penjualan </button></a>
 
@@ -31,7 +42,7 @@
                                 <td><?= $data->nama_pembeli; ?></td>
                                 <td><?= date('j F Y', strtotime($data->tgl_beli)); ?></td>
                                 <td><?= $data->nama_kopi; ?></td>
-                                <td>Rp <?= number_format($data->h_beli); ?></td>
+                                <td>Rp <?= number_format($data->h_jual); ?></td>
                                 <td><?= $data->banyak; ?></td>
                                 <td>Rp <?php echo number_format($data->grandtotal) ?></td>
                                 <td style=" text-align: center;">
